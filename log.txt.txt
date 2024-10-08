@@ -1,0 +1,306 @@
+aleja@DESKTOP-I1MSST3 MINGW64 ~
+$ git init TALLERDS2
+Initialized empty Git repository in C:/Users/aleja/TALLERDS2/.git/
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~
+$ git config --global user.name Mervid_17
+warning: user.name has multiple values
+error: cannot overwrite multiple values with a single value
+       Use a regexp, --add or --replace-all to change user.name.
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~
+$ git config --global user.email alejandromercadobenitez@gmail.com
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~
+$ git checkout -b master
+fatal: not a git repository (or any of the parent directories): .git
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~
+$ cd TALLERDS2
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git checkout -b master
+Switched to a new branch 'master'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ echo "# Mi proyecto" > readme.md
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git add readme.md
+warning: in the working copy of 'readme.md', LF will be replaced by CRLF the next time Git touches it
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git commit -m "Mi primer commit"
+[master (root-commit) c571eca] Mi primer commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 readme.md
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git checkout -b feature
+Switched to a new branch 'feature'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git branch
+* feature
+  master
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "PRIMER TEXTO" > DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git add DOCUMENTO.txt
+warning: in the working copy of 'DOCUMENTO.txt', LF will be replaced by CRLF the next time Git touches it
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git commit -m "first commit"
+[feature 5de19e9] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "SEGUNDO TEXTO" > DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git add DOCUMENTO.txt
+warning: in the working copy of 'DOCUMENTO.txt', LF will be replaced by CRLF the next time Git touches it
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "PRIMER TEXTO" > DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "SEGUNDO TEXTO" >> DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git commit -m "second commit"
+[feature b6d30c0] second commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "TERCER TEXTO" >>> DOCUMENTO.txt
+bash: syntax error near unexpected token `>'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "TERCER TEXTO" >> DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git commit -m "THIRD commit"
+On branch feature
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   DOCUMENTO.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git commit -am "THIRD commit"
+warning: in the working copy of 'DOCUMENTO.txt', LF will be replaced by CRLF the next time Git touches it
+[feature 6594d70] THIRD commit
+ 1 file changed, 2 insertions(+)
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git checkout master
+Switched to branch 'master'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git merge feature
+Updating c571eca..6594d70
+Fast-forward
+ DOCUMENTO.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git reset --hard HEAD~1
+HEAD is now at b6d30c0 second commit
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git rebase feature
+Successfully rebased and updated refs/heads/master.
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (hotfix)
+$ echo "Corrección innmediata" >> DOCUMENTO.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (hotfix)
+$ git commit -am "Hotfix"
+warning: in the working copy of 'DOCUMENTO.txt', LF will be replaced by CRLF the next time Git touches it
+[hotfix 7f1b1ad] Hotfix
+ 1 file changed, 1 insertion(+)
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (hotfix)
+$ git checkout master
+Switched to branch 'master'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git cherry-pick hotfix
+[master dca81f5] Hotfix
+ Date: Mon Oct 7 22:34:54 2024 -0500
+ 1 file changed, 1 insertion(+)
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git reflog
+dca81f5 (HEAD -> master) HEAD@{0}: cherry-pick: Hotfix
+6594d70 (feature) HEAD@{1}: checkout: moving from hotfix to master
+7f1b1ad (hotfix) HEAD@{2}: commit: Hotfix
+6594d70 (feature) HEAD@{3}: checkout: moving from master to hotfix
+6594d70 (feature) HEAD@{4}: rebase (finish): returning to refs/heads/master
+6594d70 (feature) HEAD@{5}: rebase (start): checkout feature
+b6d30c0 HEAD@{6}: reset: moving to HEAD~1
+6594d70 (feature) HEAD@{7}: merge feature: Fast-forward
+c571eca HEAD@{8}: checkout: moving from feature to master
+6594d70 (feature) HEAD@{9}: commit: THIRD commit
+b6d30c0 HEAD@{10}: commit: second commit
+5de19e9 HEAD@{11}: commit: first commit
+c571eca HEAD@{12}: checkout: moving from master to feature
+c571eca HEAD@{13}: commit (initial): Mi primer commit
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git checkout ^C
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git checkout 6594d70
+Note: switching to '6594d70'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 6594d70 THIRD commit
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 ((6594d70...))
+$ git rebase feature
+HEAD is up to date.
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 ((6594d70...))
+$ echo "Cambio en feature" > Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 ((6594d70...))
+$ git checkout feature
+Switched to branch 'feature'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "Cambio en feature" > Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git commit -am "cambios en FEATURE"
+On branch feature
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Conflicto.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "Cambio en feature" > Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git commit -am "cambios en FEATURE"
+On branch feature
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Conflicto.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ echo "Cambio en feature" > Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git add Conflicto.txt
+warning: in the working copy of 'Conflicto.txt', LF will be replaced by CRLF the next time Git touches it
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git commit -am "cambios en FEATURE"
+[feature 7e53b0a] cambios en FEATURE
+ 1 file changed, 1 insertion(+)
+ create mode 100644 Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (feature)
+$ git checkout master
+Switched to branch 'master'
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ echo "Cambio en master" > Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git add Conflicto.txt
+warning: in the working copy of 'Conflicto.txt', LF will be replaced by CRLF the next time Git touches it
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git checkout feature
+error: Your local changes to the following files would be overwritten by checkout:
+        Conflicto.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git commit -am "cambios en master"
+[master d1f8964] cambios en master
+ 1 file changed, 1 insertion(+)
+ create mode 100644 Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git merge feature
+Auto-merging Conflicto.txt
+CONFLICT (add/add): Merge conflict in Conflicto.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both added:      Conflicto.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master|MERGING)
+$ nano Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master|MERGING)
+$ git add Conflicto.txt
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master|MERGING)
+$ git commmit "SOLUCUPION DEL CONFLICTO ENTRE FEATURE Y MASTER"
+git: 'commmit' is not a git command. See 'git --help'.
+
+The most similar command is
+        commit
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master|MERGING)
+$ git commit "SOLUCUION DEL CONFLICTO ENTRE FEATURE Y MASTER"
+fatal: cannot do a partial commit during a merge.
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master|MERGING)
+$ git commit -m "SOLUCUION DEL CONFLICTO ENTRE FEATURE Y MASTER"
+[master e4ca841] SOLUCUION DEL CONFLICTO ENTRE FEATURE Y MASTER
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+aleja@DESKTOP-I1MSST3 MINGW64 ~/TALLERDS2 (master)
+$
